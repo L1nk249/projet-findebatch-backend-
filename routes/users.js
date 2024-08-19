@@ -180,7 +180,6 @@ module.exports = router;
 // Route pour se connecter au service google pour authentification
 router.post('/google-auth', (req, res) => {
   const { name,email} = req.body;
-  console.log("coucou")
   User.findOne({ email }).then(user => {
     if (user) {
       // Si l'utilisateur existe, renvoyer le token

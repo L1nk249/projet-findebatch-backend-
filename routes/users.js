@@ -122,7 +122,7 @@ router.post("/signin", (req, res) => {
       subject: "Réinitialisation de votre mot de passe",
       text: `Vous recevez cet e-mail car vous avez demandé la réinitialisation du mot de passe de votre compte.
                  Veuillez cliquer sur le lien suivant, ou copiez-le dans votre navigateur pour terminer le processus:
-                 http://localhost:3001/reset-password?token=${token} 
+                 ${process.env.BASE_URL}/reset-password?token=${token} 
                  Si vous n'avez pas demandé cela, ignorez cet e-mail et votre mot de passe restera inchangé.`,
       };
 

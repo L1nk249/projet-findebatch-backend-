@@ -88,7 +88,7 @@ router.post("/api/openagenda", (req, res) => {
                     user: "66b0aa0fc4c8131877047e63", // Mettre l'_id de OpenAgenda dans la collection "users" (cet user est déjà créé sinon le créer avec la route http://localhost:3000/users/openAgenda)
                   });
                   newEvent.save().then();
-                  fetch(`http://localhost:3000/places/newevent`, {
+                  fetch(`${process.env.REACT_APP_BACKEND_URL}/places/newevent`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

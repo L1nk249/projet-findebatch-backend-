@@ -16,7 +16,7 @@ var categoriesRouter = require('./routes/categories');
 var app = express();
 
 app.use(cors({
-  origin: 'https://projet-f-inde-b-q5l70pk6p-levy-cedrics-projects.vercel.app',
+  origin: 'https://projet-fin-b-atch-front.vercel.app',
   credentials: true}))
 app.use(logger('dev'));
 app.use(express.json());

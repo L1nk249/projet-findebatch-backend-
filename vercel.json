@@ -1,8 +1,11 @@
 
-{
-  "version": 2,
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "OTHER_ENV_VARIABLE": "@other_env_variable"
-  }
+{"version": 2,
+"builds": [{
+  "src": "app.js",
+  "use": "@vercel/node"
+}],
+"routes": [{
+  "src": "/(.*)",
+  "dest": "app.js"
+}]
 }

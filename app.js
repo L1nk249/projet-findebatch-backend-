@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 var express = require('express');
+const cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -13,7 +14,7 @@ var eventsRouter = require('./routes/events');
 var categoriesRouter = require('./routes/categories');
 
 var app = express();
-const cors = require('cors')
+
 app.use(cors({
   origin: 'https://projet-fin-b-atch-front.vercel.app',
   credentials: true}))

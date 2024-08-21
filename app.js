@@ -13,12 +13,9 @@ var eventsRouter = require('./routes/events');
 var categoriesRouter = require('./routes/categories');
 
 var app = express();
-const cors = require('cors');
-app.use(cors({
-  origin: 'https://projet-fin-b-atch-front-kvzuvicie-levy-cedrics-projects.vercel.app',
-  credentials: true
-}));
+const cors = require('cors')
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

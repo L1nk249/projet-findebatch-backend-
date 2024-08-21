@@ -14,8 +14,9 @@ var categoriesRouter = require('./routes/categories');
 
 var app = express();
 const cors = require('cors')
-
-app.use(cors())
+app.use(cors({
+  origin: 'https://projet-fin-b-atch-front.vercel.app',
+  credentials: true}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

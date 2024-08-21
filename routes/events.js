@@ -1,15 +1,15 @@
 var express = require("express");
 var router = express.Router();
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 require("../models/connection");
 const moment = require("moment");
 moment().format();
 const apiKey = process.env.API_KEY;
 
-const fs = require('fs');
-const path = require('path'); // Import de path pour gérer les chemins de fichiers
-const unzipper = require('unzipper'); // Pour extraire les fichiers ZIP
+const fs = require("fs");
+const path = require("path"); // Import de path pour gérer les chemins de fichiers
+const unzipper = require("unzipper"); // Pour extraire les fichiers ZIP
 
 const Event = require("../models/events");
 const Place = require("../models/places");
@@ -88,7 +88,7 @@ router.post("/api/openagenda", (req, res) => {
                     user: "66b0aa0fc4c8131877047e63", // Mettre l'_id de OpenAgenda dans la collection "users" (cet user est déjà créé sinon le créer avec la route http://localhost:3000/users/openAgenda)
                   });
                   newEvent.save().then();
-                  fetch(`${process.env.REACT_APP_BACKEND_URL}/places/newevent`, {
+                  fetch(`${apiUrl}/places/newevent`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -147,7 +147,9 @@ router.get("/search/:search", (req, res) => {
 router.get("/:startDate/:endDate/:city", (req, res) => {
   // Utiliser le module moment pour formater les dates
   const startDateEndHeure = moment(req.params.startDate).endOf("day").toDate();
-  const startDateStartHeure = moment(req.params.startDate).startOf("day").toDate();
+  const startDateStartHeure = moment(req.params.startDate)
+    .startOf("day")
+    .toDate();
   const endDateEndHeure = moment(req.params.endDate).endOf("day").toDate();
   const endDateStartHeure = moment(req.params.endDate).startOf("day").toDate();
 
@@ -161,8 +163,8 @@ router.get("/:startDate/:endDate/:city", (req, res) => {
 
   // Récupérer la ville à partir des coordonnées
   fetch(`https://api-adresse.data.gouv.fr/search/?q=${req.params.city}`)
-    .then(response => response.json())
-    .then(infos => {
+    .then((response) => response.json())
+    .then((infos) => {
       const city = infos.features[0].properties.city;
 
       const matchConditions = {
@@ -195,9 +197,8 @@ router.get("/:startDate/:endDate/:city", (req, res) => {
         console.log(data);
         res.json({ events: data });
       });
-
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error fetching city data:", error);
       res.status(500).json({ error: "Error fetching city data" });
     });
@@ -310,19 +311,21 @@ router.get("/bookinglist/booking/user/:token", (req, res) => {
 });
 
 // 13 - Route DELETE pour supprimer les événements basés sur l'ID du lieu
-router.delete('/events/delete-by-place/:placeId', async (req, res) => {
+router.delete("/events/delete-by-place/:placeId", async (req, res) => {
   try {
     const placeId = req.params.placeId;
-    
+
     // Suppression des événements où le champ 'place' correspond à l'ID fourni
     const result = await Event.deleteMany({ place: req.params.placeId });
 
     res.status(200).json({
-      message: `Nombre de documents supprimés : ${result.deletedCount}`
+      message: `Nombre de documents supprimés : ${result.deletedCount}`,
     });
   } catch (error) {
     console.error("Erreur lors de la suppression des documents :", error);
-    res.status(500).json({ error: 'Erreur lors de la suppression des documents.' });
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la suppression des documents." });
   }
 });
 
@@ -338,7 +341,10 @@ router.put("/swipe/droite/droite/:token/:idEvent", (req, res) => {
           res.json({ result: true });
         });
       } else {
-        res.json({ result: false, message: "l'utilisateur avait déjà liké cet event" });
+        res.json({
+          result: false,
+          message: "l'utilisateur avait déjà liké cet event",
+        });
       }
     });
   });
@@ -356,7 +362,10 @@ router.put("/swipe/gauche/gauche/:token/:idEvent", (req, res) => {
           res.json({ result: true });
         });
       } else {
-        res.json({ result: false, message: "l'utilisateur n'avait pas liké cet event" });
+        res.json({
+          result: false,
+          message: "l'utilisateur n'avait pas liké cet event",
+        });
       }
     });
   });

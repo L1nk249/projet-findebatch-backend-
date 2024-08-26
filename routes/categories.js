@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
       res.json({ categories: data });
     });
   });
+  //
 
 module.exports = router;
 //

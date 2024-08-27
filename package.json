@@ -29,6 +29,7 @@
     "bootstrap": "^5.3.3",
     "boxicons": "^2.1.4",
     "cloudinary": "^2.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.1.8",
     "express": "^4.19.2",

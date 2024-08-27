@@ -16,7 +16,7 @@ var categoriesRouter = require('./routes/categories');
 var app = express();
 
 app.use(cors({
-  origin: 'https://projet-findebatch-frontend.vercel.app/',
+  origin:'*',
   credentials: true}))
 app.use(logger('dev'));
 app.use(express.json());

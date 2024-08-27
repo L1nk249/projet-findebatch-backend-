@@ -10,7 +10,7 @@ const fileUpload = require('express-fileupload');
 
 
 app.use(cors({
-  origin: '*',
+  origin: 'https://projet-findebatch-frontend.vercel.app',
   credentials: true}))
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -38,4 +38,3 @@ app.use('/categories', categoriesRouter);
 
 
 module.exports = app;
-//

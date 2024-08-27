@@ -10,7 +10,7 @@ const fileUpload = require('express-fileupload');
 
 
 app.use(cors({
-  origin: 'https://projet-findebatch-frontend-git-main-levy-cedrics-projects.vercel.app/',
+  origin: '*',
   credentials: true}))
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

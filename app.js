@@ -7,17 +7,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const fileUpload = require('express-fileupload');
 
-var app = express();
-app.use(cors({
-  origin: '*',
-  credentials: true}))
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var placesRouter = require('./routes/places');
 var eventsRouter = require('./routes/events');
 var categoriesRouter = require('./routes/categories');
+
+
+var app = express();
+app.use(cors({
+  origin: 'https://projet-findebatch-frontend.vercel.app',
+  credentials: true}))
 
 
 app.use(logger('dev'));
